@@ -13,14 +13,15 @@ const PostsList = () => {
         setPosts(response.data);
         setIsLoading(false);
       } catch (err) {
-        console.error('Error fetching posts:', error);
+        console.error('Error fetching posts:', err);
         setError(err.message);
         setIsLoading(false);
       }
     };
-
+  
     fetchPosts();
-  }, []);
+  }, [error]); // Include error in the dependency array
+  
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <div>Error: {error}</div>;
